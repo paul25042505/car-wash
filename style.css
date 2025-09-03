@@ -1,0 +1,284 @@
+ /* 重新定義畫面 */
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+ body {
+     font-family: "Microsoft JhengHei", sans-serif;
+     background: #0a0a0a;
+     /* 深黑色底 */
+ }
+
+ body::before {
+     content: '';
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background:
+         radial-gradient(circle at 20% 80%, #00ffff22 0%, transparent 50%),
+         radial-gradient(circle at 80% 20%, #ff00ff22 0%, transparent 50%),
+         radial-gradient(circle at 40% 40%, #ffff0022 0%, transparent 50%);
+     z-index: -1;
+ }
+
+ /* 隱藏項目符號 */
+ .service ul,
+ .note ul {
+     list-style: none;
+     padding-left: 0;
+     margin: 0;
+ }
+
+ .header {
+     background: linear-gradient(45deg, #000000, #1a1a1a);
+     border: 5px solid #00ffff;
+     text-align: center;
+     padding: 40px 20px;
+     position: relative;
+     margin-bottom: 30px;
+ }
+
+ /* h1 文字與 Emoji 區分 */
+ .header h1 {
+     font-family: 'Orbitron', monospace;
+     font-size: clamp(1.5rem, 6vw, 3.5rem);
+     text-align: center;
+     margin-bottom: 10px;
+     line-height: 1.2;
+ }
+
+ /* 文字霓虹效果（黑邊 + 光暈 + 脈動） */
+ .neon-text {
+     font-weight: 900;
+     color: #00ffff;
+     /* 文字主色 */
+     text-shadow:
+         /* 模擬黑色邊框 */
+         -2px -2px 0 #000,
+         2px -2px 0 #000,
+         -2px 2px 0 #000,
+         2px 2px 0 #000,
+         /* 霓虹光暈 */
+         0 0 5px #00ffff,
+         0 0 10px #00ffff,
+         0 0 15px #00ffff;
+     animation: neonPulse 2s ease-in-out infinite alternate;
+ }
+
+ @keyframes neonPulse {
+     from {
+         text-shadow:
+             -2px -2px 0 #000,
+             2px -2px 0 #000,
+             -2px 2px 0 #000,
+             2px 2px 0 #000,
+             0 0 3px #00ffff,
+             0 0 6px #00ffff,
+             0 0 12px #00ffff;
+     }
+
+     to {
+         text-shadow:
+             -2px -2px 0 #000,
+             2px -2px 0 #000,
+             -2px 2px 0 #000,
+             2px 2px 0 #000,
+             0 0 6px #00ffff,
+             0 0 12px #00ffff,
+             0 0 20px #00ffff;
+     }
+ }
+
+ .main {
+     max-width: 1000px;
+     margin: 0 auto 30px auto;
+     padding: 30px;
+     background: rgba(15, 15, 15, 0.95);
+     border: 5px solid #00ffff;
+     border-radius: 20px;
+     box-shadow:
+         0 0 50px rgba(0, 255, 255, 0.3),
+         inset 0 0 50px rgba(0, 255, 255, 0.1);
+     backdrop-filter: blur(10px);
+     position: relative;
+ }
+
+ .main::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-image:
+         linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+         linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+     background-size: 20px 20px;
+     pointer-events: none;
+     opacity: 0.3;
+     z-index: 0;
+     border-radius: 15px;
+ }
+
+ .section-title {
+     font-family: 'Orbitron', monospace;
+     font-size: clamp(1.2rem, 4vw, 2rem);
+     color: #00ffff;
+     text-align: center;
+     margin-bottom: 30px;
+     text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+     position: relative;
+     z-index: 1;
+ }
+
+ .service-grid {
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+     gap: 25px;
+     position: relative;
+     z-index: 1;
+ }
+
+ .service {
+     background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95));
+     border-radius: 20px;
+     padding: 25px;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+     font-size: clamp(16px, 2.5vw, 20px);
+     transition: all 0.3s ease;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .service::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 4px;
+     border-radius: 20px 20px 0 0;
+ }
+
+ .service:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+ }
+
+ .service.快速洗::before {
+     background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+ }
+
+ .service.一般洗::before {
+     background: linear-gradient(90deg, #4ecdc4, #7dd3c7);
+ }
+
+ .service.精緻洗::before {
+     background: linear-gradient(90deg, #45b7d1, #74c5d6);
+ }
+
+ .service.機車洗::before {
+     background: linear-gradient(90deg, #96ceb4, #aad5c2);
+ }
+
+ .service.add-on::before {
+     background: linear-gradient(90deg, #feca57, #fed67a);
+ }
+
+ .service-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-bottom: 20px;
+     padding-bottom: 15px;
+     border-bottom: 2px solid #f0f0f0;
+ }
+
+ .service-title {
+     font-size: clamp(1.1rem, 3vw, 1.4rem);
+     font-weight: bold;
+     color: #333;
+     margin: 0;
+ }
+
+ .price {
+     font-family: 'Orbitron', monospace;
+     font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+     font-weight: 900;
+     background: linear-gradient(45deg, #00ffff, #ff00ff);
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+     background-clip: text;
+     position: relative;
+ }
+
+ .price::after {
+     content: '';
+     position: absolute;
+     bottom: -3px;
+     left: 0;
+     width: 100%;
+     height: 3px;
+     background: linear-gradient(90deg, #00ffff, #ff00ff);
+     border-radius: 1px;
+ }
+
+ .service ul {
+     margin-bottom: 15px;
+ }
+
+ .service li {
+     margin-bottom: 8px;
+     line-height: 1.4;
+     color: #444;
+     font-size: clamp(14px, 2vw, 16px);
+ }
+
+ .service-target {
+     background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+     color: white;
+     padding: 12px 20px;
+     border-radius: 20px;
+     font-weight: 500;
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+     display: inline-block;
+     margin-top: 10px;
+     box-shadow: 0 5px 15px rgba(240, 147, 251, 0.3);
+     font-size: clamp(12px, 2vw, 14px);
+ }
+
+ .add-on-section {
+     margin-top: 40px;
+ }
+
+ @media (max-width: 768px) {
+     .main {
+         margin: 0 15px 30px 15px;
+         padding: 20px;
+     }
+
+     .service-grid {
+         grid-template-columns: 1fr;
+         gap: 20px;
+     }
+
+     .service {
+         padding: 20px;
+     }
+
+     .service-header {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 10px;
+     }
+
+     .price {
+         align-self: flex-end;
+     }
+ }
